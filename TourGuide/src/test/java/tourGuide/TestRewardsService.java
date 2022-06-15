@@ -43,7 +43,7 @@ public class TestRewardsService {
 		GpsUtil gpsUtil = new GpsUtil();
 		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		Attraction attraction = gpsUtil.getAttractions().get(0);
-		assertTrue(rewardsService.isWithinAttractionProximity(attraction, attraction));
+		assertTrue(rewardsService.isWithinAttractProximity(attraction, attraction));
 	}
 	
 	@Ignore // Needs fixed - can throw ConcurrentModificationException
