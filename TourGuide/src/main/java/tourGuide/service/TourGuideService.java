@@ -3,6 +3,7 @@ package tourGuide.service;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,8 @@ public class TourGuideService {
 	boolean testMode = true;
 	
 	ExecutorService executor = Executors.newFixedThreadPool(1000);
+	
+	
 	
 	public TourGuideService(GpsUtil gpsUtil, RewardsService rewardsService) {
 		this.gpsUtil = gpsUtil;
@@ -116,13 +119,33 @@ public class TourGuideService {
 	}
 
 
+//	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
+//		List<Attraction> nearbyAttractions = new ArrayList<>();
+//		for(Attraction attraction : gpsUtil.getAttractions()) {
+//			if(rewardsService.isWithinAttractProximity(attraction, visitedLocation.location)) {
+//				nearbyAttractions.add(attraction);
+//			}
+//		}
+//		
+//		return nearbyAttractions;
+//	}
+	
 	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
 		List<Attraction> nearbyAttractions = new ArrayList<>();
+		
+	
 		for(Attraction attraction : gpsUtil.getAttractions()) {
 			if(rewardsService.isWithinAttractProximity(attraction, visitedLocation.location)) {
 				nearbyAttractions.add(attraction);
 			}
 		}
+		
+		nearbyAttractions = nearbyAttractions.stream()
+				.sorted(Comparator.comparing(
+						attraction -> rewardsService.getDistance(attraction, visitedLocation.location)))  // <= Mettre le getUserLocation a la place
+				.limit(5)
+				
+				.collect(Collectors.toList());
 		
 		return nearbyAttractions;
 	}
