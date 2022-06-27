@@ -56,7 +56,7 @@ public class TourGuideController {
     }
     
     @RequestMapping("/getAllCurrentLocations")
-    public String getAllCurrentLocations() {
+    public String getAllCurrentLocations(@RequestParam String userName) {
     	// TODO: Get a list of every user's most recent location as JSON
     	//- Note: does not use gpsUtil to query for their current location, 
     	//        but rather gathers the user's current location from their stored location history.
@@ -67,7 +67,8 @@ public class TourGuideController {
     	//        ...
     	//     }
     	
-    	return JsonStream.serialize("");
+    	User user = tourGuideService.getUser(userName);
+    	return JsonStream.serialize(tourGuideService.getAllCurrentLocations(user));
     }
     
     @RequestMapping("/getTripDeals")

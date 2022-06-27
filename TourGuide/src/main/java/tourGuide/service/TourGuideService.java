@@ -29,6 +29,9 @@ import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.Location;
 import gpsUtil.location.VisitedLocation;
+import rewardCentral.RewardCentral;
+import tourGuide.DTO.AttractionDTO;
+import tourGuide.DTO.LocationDTO;
 import tourGuide.helper.InternalTestHelper;
 import tourGuide.tracker.Tracker;
 import tourGuide.user.User;
@@ -44,6 +47,8 @@ public class TourGuideService {
 	private final TripPricer tripPricer = new TripPricer();
 	public final Tracker tracker;
 	boolean testMode = true;
+
+	RewardCentral rewardCentral;
 	
 	ExecutorService executor = Executors.newFixedThreadPool(1000);
 	
@@ -130,8 +135,10 @@ public class TourGuideService {
 //		return nearbyAttractions;
 //	}
 	
-	public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
+	public List<AttractionDTO> getNearByAttractions(VisitedLocation visitedLocation) {
+		
 		List<Attraction> nearbyAttractions = new ArrayList<>();
+		List<AttractionDTO> nearbyAttractionsDTO = new ArrayList<>();
 		
 	
 		for(Attraction attraction : gpsUtil.getAttractions()) {
@@ -142,12 +149,22 @@ public class TourGuideService {
 		
 		nearbyAttractions = nearbyAttractions.stream()
 				.sorted(Comparator.comparing(
-						attraction -> rewardsService.getDistance(attraction, visitedLocation.location)))  // <= Mettre le getUserLocation a la place
+						attraction -> rewardsService.getDistance(attraction, visitedLocation.location))) 
 				.limit(5)
-				
 				.collect(Collectors.toList());
 		
-		return nearbyAttractions;
+		
+		for (Attraction attraction : nearbyAttractions)
+		{
+			nearbyAttractionsDTO.add( new AttractionDTO(
+					attraction.attractionName, 
+					attraction.latitude, 
+					attraction.longitude, 
+					rewardsService.getDistance(visitedLocation.location, attraction), 
+					rewardCentral.getAttractionRewardPoints(attraction.attractionId, visitedLocation.userId)));
+		}
+		
+		return nearbyAttractionsDTO;
 	}
 	
 	private void addShutDownHook() {
@@ -157,6 +174,34 @@ public class TourGuideService {
 		      } 
 		    }); 
 	}
+	
+	
+	public List<LocationDTO> getAllCurrentLocations(User user) {
+		
+		List<LocationDTO> locationDTOList = new ArrayList<>();
+		List<VisitedLocation> visitedLocationList = new ArrayList<>();
+		visitedLocationList.addAll(user.getVisitedLocations());
+		
+		visitedLocationList = visitedLocationList.stream()
+				.sorted(Comparator.comparing(
+						loc -> user.getLatestLocationTimestamp())) 
+				.collect(Collectors.toList());
+		
+		
+		for (VisitedLocation sortedVisitedLocationList : visitedLocationList)
+		{
+			locationDTOList.add(new LocationDTO(
+					sortedVisitedLocationList.userId, 
+					sortedVisitedLocationList.location.longitude, 
+					sortedVisitedLocationList.location.latitude));
+		}
+		
+		
+		return locationDTOList;
+		
+		
+	}
+	
 	
 	/**********************************************************************************
 	 * 
