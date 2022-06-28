@@ -4,7 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,6 +26,9 @@ public class TestRewardsService {
 
 	@Test
 	public void userGetRewards() {
+		
+		Locale.setDefault(Locale.US);
+		
 		GpsUtil gpsUtil = new GpsUtil();
 		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 
@@ -35,7 +41,17 @@ public class TestRewardsService {
 		tourGuideService.trackUserLocation(user);
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
-		assertTrue(userRewards.size() == 1);
+		
+		ThreadPoolExecutor executorService = (ThreadPoolExecutor) rewardsService.getExecutor();
+        while (executorService.getActiveCount() > 0) {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		
+		assertEquals(1, userRewards.size() );
 	}
 	
 	@Test
@@ -46,9 +62,11 @@ public class TestRewardsService {
 		assertTrue(rewardsService.isWithinAttractProximity(attraction, attraction));
 	}
 	
-	@Ignore // Needs fixed - can throw ConcurrentModificationException
+	//@Ignore // Needs fixed - can throw ConcurrentModificationException
 	@Test
 	public void nearAllAttractions() {
+		
+		
 		GpsUtil gpsUtil = new GpsUtil();
 		RewardsService rewardsService = new RewardsService(gpsUtil, new RewardCentral());
 		rewardsService.setProximityBuffer(Integer.MAX_VALUE);
@@ -59,6 +77,16 @@ public class TestRewardsService {
 		rewardsService.calculateRewards(tourGuideService.getAllUsers().get(0));
 		List<UserReward> userRewards = tourGuideService.getUserRewards(tourGuideService.getAllUsers().get(0));
 		tourGuideService.tracker.stopTracking();
+		
+		ThreadPoolExecutor executorService = (ThreadPoolExecutor) rewardsService.getExecutor();
+        while (executorService.getActiveCount() > 0) {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+		
 
 		assertEquals(gpsUtil.getAttractions().size(), userRewards.size());
 	}

@@ -48,7 +48,7 @@ public class TourGuideService {
 	public final Tracker tracker;
 	boolean testMode = true;
 
-	RewardCentral rewardCentral;
+	RewardCentral rewardCentral = new RewardCentral();
 	
 	ExecutorService executor = Executors.newFixedThreadPool(1000);
 	
