@@ -42,16 +42,17 @@ public class TestRewardsService {
 		List<UserReward> userRewards = user.getUserRewards();
 		tourGuideService.tracker.stopTracking();
 		
+		
 		ThreadPoolExecutor executorService = (ThreadPoolExecutor) rewardsService.getExecutor();
         while (executorService.getActiveCount() > 0) {
             try {
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 		
-		assertEquals(1, userRewards.size() );
+		assertEquals( 1, userRewards.size() );
 	}
 	
 	@Test
@@ -78,15 +79,15 @@ public class TestRewardsService {
 		List<UserReward> userRewards = tourGuideService.getUserRewards(tourGuideService.getAllUsers().get(0));
 		tourGuideService.tracker.stopTracking();
 		
+		
 		ThreadPoolExecutor executorService = (ThreadPoolExecutor) rewardsService.getExecutor();
         while (executorService.getActiveCount() > 0) {
             try {
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-		
 
 		assertEquals(gpsUtil.getAttractions().size(), userRewards.size());
 	}

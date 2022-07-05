@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -117,6 +119,15 @@ public class TestTourGuideService {
 		List<AttractionDTO> attractions = tourGuideService.getNearByAttractions(visitedLocation);
 		
 		tourGuideService.tracker.stopTracking();
+		
+		ThreadPoolExecutor executorService = (ThreadPoolExecutor) tourGuideService.getExecutor();
+        while (executorService.getActiveCount() > 0) {
+            try {
+                TimeUnit.SECONDS.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 		
 		assertEquals(5, attractions.size());
 	}

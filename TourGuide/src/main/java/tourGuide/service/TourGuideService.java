@@ -153,7 +153,6 @@ public class TourGuideService {
 				.limit(5)
 				.collect(Collectors.toList());
 		
-		
 		for (Attraction attraction : nearbyAttractions)
 		{
 			nearbyAttractionsDTO.add( new AttractionDTO(
@@ -187,7 +186,6 @@ public class TourGuideService {
 						loc -> user.getLatestLocationTimestamp())) 
 				.collect(Collectors.toList());
 		
-		
 		for (VisitedLocation sortedVisitedLocationList : visitedLocationList)
 		{
 			locationDTOList.add(new LocationDTO(
@@ -196,9 +194,7 @@ public class TourGuideService {
 					sortedVisitedLocationList.location.latitude));
 		}
 		
-		
 		return locationDTOList;
-		
 	}
 	
 	
