@@ -22,9 +22,9 @@ public class RewardsService
 	private static final double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
 
 	// proximity in miles
-	private int defaultProximityBuffer = 100;
+	private int defaultProximityBuffer = 10;
 	private int proximityBuffer = defaultProximityBuffer;
-	private int attractionProximityRange = 1000;
+	private int attractionProximityRange = 10000;
 	private final GpsUtil gpsUtil;
 	private final RewardCentral rewardsCentral;
 

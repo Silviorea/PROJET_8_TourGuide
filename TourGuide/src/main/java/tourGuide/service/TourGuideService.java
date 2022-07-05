@@ -166,6 +166,7 @@ public class TourGuideService {
 		return nearbyAttractionsDTO;
 	}
 	
+	
 	private void addShutDownHook() {
 		Runtime.getRuntime().addShutdownHook(new Thread() { 
 		      public void run() {

@@ -1,6 +1,7 @@
 package tourGuide;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -9,11 +10,9 @@ import java.util.UUID;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import gpsUtil.GpsUtil;
-import gpsUtil.location.Attraction;
 import gpsUtil.location.VisitedLocation;
 import rewardCentral.RewardCentral;
 import tourGuide.DTO.AttractionDTO;
@@ -102,6 +101,9 @@ public class TestTourGuideService {
 		assertEquals(user.getUserId(), visitedLocation.userId);
 	}
 	
+	
+	// LIST ATTRACTION DTO à 0 ....
+	
 	//@Ignore // Not yet implemented
 	@Test
 	public void getNearbyAttractions() {
@@ -130,6 +132,8 @@ public class TestTourGuideService {
         }
 		
 		assertEquals(5, attractions.size());
+		//assertTrue(attractions.size() == 5);
+		//assertFalse(attractions.size() != 5);
 	}
 	
 	

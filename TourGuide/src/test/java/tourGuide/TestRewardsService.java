@@ -24,6 +24,11 @@ import tourGuide.user.UserReward;
 
 public class TestRewardsService {
 
+	
+	
+	
+	// TROUVE UNE TAILLE DE 2 AU LIEU DE 1
+	
 	@Test
 	public void userGetRewards() {
 		
@@ -39,8 +44,6 @@ public class TestRewardsService {
 		Attraction attraction = gpsUtil.getAttractions().get(0);
 		user.addToVisitedLocations(new VisitedLocation(user.getUserId(), attraction, new Date()));
 		tourGuideService.trackUserLocation(user);
-		List<UserReward> userRewards = user.getUserRewards();
-		tourGuideService.tracker.stopTracking();
 		
 		
 		ThreadPoolExecutor executorService = (ThreadPoolExecutor) rewardsService.getExecutor();
@@ -51,6 +54,11 @@ public class TestRewardsService {
                 e.printStackTrace();
             }
         }
+		
+		
+		List<UserReward> userRewards = user.getUserRewards();
+		tourGuideService.tracker.stopTracking();
+		
 		
 		assertEquals( 1, userRewards.size() );
 	}
