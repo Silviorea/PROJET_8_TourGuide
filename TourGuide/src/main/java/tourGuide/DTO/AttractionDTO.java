@@ -9,20 +9,26 @@ public class AttractionDTO implements Serializable
 	private String touristAttractionName;
 	private double touristAttractionLat;
 	private double touristAttractionLong;
+	private double touristLat;
+	private double touristLong;
 	private double distance;
 	private int reward;
 
 
+
 	public AttractionDTO(String touristAttractionName, double touristAttractionLat, double touristAttractionLong,
-			double distance, int reward)
+			double touristLat, double touristLong, double distance, int reward)
 	{
 		super();
 		this.touristAttractionName = touristAttractionName;
 		this.touristAttractionLat = touristAttractionLat;
 		this.touristAttractionLong = touristAttractionLong;
+		this.touristLat = touristLat;
+		this.touristLong = touristLong;
 		this.distance = distance;
 		this.reward = reward;
 	}
+
 
 
 
@@ -117,7 +123,34 @@ public class AttractionDTO implements Serializable
 	}
 	
 	
-	
+	public double getTouristLat()
+	{
+		return touristLat;
+	}
+
+
+
+
+	public void setTouristLat(double touristLat)
+	{
+		this.touristLat = touristLat;
+	}
+
+
+
+
+	public double getTouristLong()
+	{
+		return touristLong;
+	}
+
+
+
+
+	public void setTouristLong(double touristLong)
+	{
+		this.touristLong = touristLong;
+	}
 	
 	
 	

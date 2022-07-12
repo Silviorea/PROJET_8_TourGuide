@@ -102,9 +102,7 @@ public class TestTourGuideService {
 	}
 	
 	
-	// LIST ATTRACTION DTO à 0 ....
-	
-	//@Ignore // Not yet implemented
+
 	@Test
 	public void getNearbyAttractions() {
 		
@@ -132,8 +130,7 @@ public class TestTourGuideService {
         }
 		
 		assertEquals(5, attractions.size());
-		//assertTrue(attractions.size() == 5);
-		//assertFalse(attractions.size() != 5);
+
 	}
 	
 	

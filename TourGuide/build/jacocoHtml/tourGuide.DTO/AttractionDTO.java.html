@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AttractionDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TourGuide</a> &gt; <a href="index.source.html" class="el_package">tourGuide.DTO</a> &gt; <span class="el_source">AttractionDTO.java</span></div><h1>AttractionDTO.java</h1><pre class="source lang-java linenums">package tourGuide.DTO;
+
+import java.io.Serializable;
+
+public class AttractionDTO implements Serializable
+{
+
+	private static final long serialVersionUID = 1L;
+	private String touristAttractionName;
+	private double touristAttractionLat;
+	private double touristAttractionLong;
+	private double touristLat;
+	private double touristLong;
+	private double distance;
+	private int reward;
+
+
+
+	public AttractionDTO(String touristAttractionName, double touristAttractionLat, double touristAttractionLong,
+			double touristLat, double touristLong, double distance, int reward)
+	{
+<span class="fc" id="L22">		super();</span>
+<span class="fc" id="L23">		this.touristAttractionName = touristAttractionName;</span>
+<span class="fc" id="L24">		this.touristAttractionLat = touristAttractionLat;</span>
+<span class="fc" id="L25">		this.touristAttractionLong = touristAttractionLong;</span>
+<span class="fc" id="L26">		this.touristLat = touristLat;</span>
+<span class="fc" id="L27">		this.touristLong = touristLong;</span>
+<span class="fc" id="L28">		this.distance = distance;</span>
+<span class="fc" id="L29">		this.reward = reward;</span>
+<span class="fc" id="L30">	}</span>
+
+
+
+
+	public AttractionDTO()
+	{
+<span class="nc" id="L37">		super();</span>
+<span class="nc" id="L38">	}</span>
+
+
+
+
+	public String getTouristAttractionName()
+	{
+<span class="nc" id="L45">		return touristAttractionName;</span>
+	}
+
+
+	public void setTouristAttractionName(String touristAttractionName)
+	{
+<span class="nc" id="L51">		this.touristAttractionName = touristAttractionName;</span>
+<span class="nc" id="L52">	}</span>
+
+
+	
+
+
+	public double getTouristAttractionLat()
+	{
+<span class="nc" id="L60">		return touristAttractionLat;</span>
+	}
+
+
+
+
+
+
+
+	public void setTouristAttractionLat(double touristAttractionLat)
+	{
+<span class="nc" id="L71">		this.touristAttractionLat = touristAttractionLat;</span>
+<span class="nc" id="L72">	}</span>
+
+
+
+
+
+
+
+	public double getTouristAttractionLong()
+	{
+<span class="nc" id="L82">		return touristAttractionLong;</span>
+	}
+
+
+
+
+
+
+
+	public void setTouristAttractionLong(double touristAttractionLong)
+	{
+<span class="nc" id="L93">		this.touristAttractionLong = touristAttractionLong;</span>
+<span class="nc" id="L94">	}</span>
+
+
+
+
+
+
+
+	public double getDistance()
+	{
+<span class="nc" id="L104">		return distance;</span>
+	}
+
+
+	public void setDistance(double distance)
+	{
+<span class="nc" id="L110">		this.distance = distance;</span>
+<span class="nc" id="L111">	}</span>
+
+
+	public int getReward()
+	{
+<span class="nc" id="L116">		return reward;</span>
+	}
+
+
+	public void setReward(int reward)
+	{
+<span class="nc" id="L122">		this.reward = reward;</span>
+<span class="nc" id="L123">	}</span>
+	
+	
+	public double getTouristLat()
+	{
+<span class="nc" id="L128">		return touristLat;</span>
+	}
+
+
+
+
+	public void setTouristLat(double touristLat)
+	{
+<span class="nc" id="L136">		this.touristLat = touristLat;</span>
+<span class="nc" id="L137">	}</span>
+
+
+
+
+	public double getTouristLong()
+	{
+<span class="nc" id="L144">		return touristLong;</span>
+	}
+
+
+
+
+	public void setTouristLong(double touristLong)
+	{
+<span class="nc" id="L152">		this.touristLong = touristLong;</span>
+<span class="nc" id="L153">	}</span>
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

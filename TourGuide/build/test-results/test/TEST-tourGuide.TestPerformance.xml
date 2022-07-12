@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tourGuide.TestPerformance" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-07-12T09:34:37" hostname="DESKTOP-A56R38B" time="30.387">
+  <properties/>
+  <testcase name="highVolumeTrackLocation" classname="tourGuide.TestPerformance" time="15.357"/>
+  <testcase name="highVolumeGetRewards" classname="tourGuide.TestPerformance" time="15.03"/>
+  <system-out><![CDATA[11:34:38.123 [Test worker] INFO tourGuide.service.TourGuideService - TestMode enabled
+11:34:38.144 [Test worker] DEBUG tourGuide.service.TourGuideService - Initializing users
+11:34:38.272 [Test worker] DEBUG tourGuide.service.TourGuideService - Created 10 internal test users.
+11:34:38.272 [Test worker] DEBUG tourGuide.service.TourGuideService - Finished initializing users
+11:34:38.285 [pool-4-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker stopping
+11:34:38.285 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Begin Tracker. Tracking 10 users.
+11:34:38.917 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker Time Elapsed: 0 seconds.
+11:34:38.917 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker sleeping
+highVolumeTrackLocation: Time Elapsed: 15 seconds.
+11:34:53.313 [Test worker] INFO tourGuide.service.TourGuideService - TestMode enabled
+11:34:53.313 [Test worker] DEBUG tourGuide.service.TourGuideService - Initializing users
+11:34:53.319 [Test worker] DEBUG tourGuide.service.TourGuideService - Created 10 internal test users.
+11:34:53.320 [Test worker] DEBUG tourGuide.service.TourGuideService - Finished initializing users
+11:34:53.321 [pool-7-thread-1] DEBUG tourGuide.tracker.Tracker - Begin Tracker. Tracking 10 users.
+11:34:53.321 [pool-8-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker stopping
+11:34:53.942 [pool-7-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker Time Elapsed: 0 seconds.
+11:34:53.943 [pool-7-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker sleeping
+highVolumeGetRewards: Time Elapsed: 15 seconds.
+]]></system-out>
+  <system-err><![CDATA[Jul 12, 2022 11:34:38 AM org.javamoney.moneta.DefaultMonetaryContextFactory createMonetaryContextNonNullConfig
+INFO: Using custom MathContext: precision=256, roundingMode=HALF_EVEN
+]]></system-err>
+</testsuite>

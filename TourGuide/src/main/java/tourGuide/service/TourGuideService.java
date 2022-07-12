@@ -101,6 +101,11 @@ public class TourGuideService {
 		return providers;
 	}
 	
+	/*
+	 * Prends la visited location créee via gpsUtil et l'intègre dans la liste des User
+	 * Calcule ensuite le rewards
+	 */
+	
 	public VisitedLocation trackUserLocation(User user)
 	{
 		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
@@ -159,6 +164,8 @@ public class TourGuideService {
 					attraction.attractionName, 
 					attraction.latitude, 
 					attraction.longitude, 
+					visitedLocation.location.latitude,
+					visitedLocation.location.longitude,
 					rewardsService.getDistance(visitedLocation.location, attraction), 
 					rewardCentral.getAttractionRewardPoints(attraction.attractionId, visitedLocation.userId)));
 		}
